@@ -344,6 +344,7 @@ For example, we may want to find out all the different infection_case in Daegu P
 
 i. Sort the number of confirmed cases. Confirmed column is there in the dataset. Check with descending sort also.
 
+Sorting -> Ascending
 >>> casedf.filter((col("province") == "Daegu") &( col("confirmed") >= 10)).orderBy(col("confirmed").asc()).show()
 +--------+--------+------------+-----+--------------------+---------+---------+----------+
 | case_id|province|        city|group|      infection_case|confirmed| latitude| longitude|
@@ -357,5 +358,27 @@ i. Sort the number of confirmed cases. Confirmed column is there in the dataset.
 | 1200009|   Daegu|           -|false|contact with patient|      917|        -|         -|
 | 1200001|   Daegu|      Nam-gu| true|  Shincheonji Church|     4511| 35.84008|  128.5667|
 +--------+--------+------------+-----+--------------------+---------+---------+----------+
+
+Sorting -> Descending
+>>> casedf.filter((col("province") == "Daegu") &( col("confirmed") >= 10)).orderBy(col("confirmed").desc()).show()
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+| case_id|province|        city|group|      infection_case|confirmed| latitude| longitude|
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+| 1200001|   Daegu|      Nam-gu| true|  Shincheonji Church|     4511| 35.84008|  128.5667|
+| 1200009|   Daegu|           -|false|contact with patient|      917|        -|         -|
+| 1200010|   Daegu|           -|false|                 etc|      747|        -|         -|
+| 1200002|   Daegu|Dalseong-gun| true|Second Mi-Ju Hosp...|      196|35.857375|128.466651|
+| 1200003|   Daegu|      Seo-gu| true|Hansarang Convale...|      124|35.885592|128.556649|
+| 1200004|   Daegu|Dalseong-gun| true|Daesil Convalesce...|      101|35.857393|128.466653|
+| 1200008|   Daegu|           -|false|     overseas inflow|       41|        -|         -|
+| 1200005|   Daegu|     Dong-gu| true|     Fatima Hospital|       39| 35.88395|128.624059|
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+
+j. In case of any wrong data type, cast that data type from nteger to string or string to integer.
+
+
+
+k. Use group by on top of province and city column and agg it ith sum of confirmed cases.
+
 
 
