@@ -26,3 +26,67 @@ SHOW CASE.CSV
 only showing top 2 rows
 
 COUNT CASE.CSV
+
+>>> from pyspark.sql.functions import *
+>>> casedf.select(count("*").alias("Total_no_of_records")).show()
++-------------------+
+|Total_no_of_records|
++-------------------+
+|                174|
++-------------------+
+
+READ REGION.CSV
+
+>>> regiondf = spark.read.option("Header",True).option("inferSchema",True).csv("/assignment_data/Region.csv")
+
+SHOW REGION.CSV
+
+>>> regiondf.show(2)
+
++-----+--------+----------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+| code|province|      city| latitude| longitude|elementary_school_count|kindergarten_count|university_count|academy_ratio|elderly_population_ratio|elderly_alone_ratio|nursing_home_count|
++-----+--------+----------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+|10000|   Seoul|     Seoul|37.566953|126.977977|                    607|               830|              48|         1.44|                   15.38|                5.8|             22739|
+|10010|   Seoul|Gangnam-gu|37.518421|127.047222|                     33|                38|               0|         4.18|                   13.17|                4.3|              3088|
++-----+--------+----------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+only showing top 2 rows
+
+
+COUNT REGION.CSV
+
+>>> from pyspark.sql.functions import *
+>>> regiondf.select(count("*").alias("Total_no_of_records")).show()
++-------------------+
+|Total_no_of_records|
++-------------------+
+|                244|
++-------------------+
+
+READ TIMEPROVINCE.CSV
+
+>>> timeprovincedf = spark.read.option("Header",True).option("inferSchema",True).csv("/assignment_data/TimeProvince.csv")
+
+SHOW TIMEPROVINCE.CSV
+
+>>> timeprovincedf.show(2)
++----------+----+--------+---------+--------+--------+
+|      date|time|province|confirmed|released|deceased|
++----------+----+--------+---------+--------+--------+
+|2020-01-20|  16|   Seoul|        0|       0|       0|
+|2020-01-20|  16|   Busan|        0|       0|       0|
++----------+----+--------+---------+--------+--------+
+only showing top 2 rows
+
+COUNT TIMEPROVINCE.CSV
+
+>>> from pyspark.sql.functions import *
+>>> timeprovincedf.select(count("*").alias("Total_no_of_records")).show()
++-------------------+
+|Total_no_of_records|
++-------------------+
+|               2771|
++-------------------+
+
+
+
+
