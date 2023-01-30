@@ -1,0 +1,28 @@
+
+4. Collect your data as a pyspark dataframe and perform different
+operations.
+Note: Consider only three files for creating a dataframe among all
+case, region and TimeProvince
+
+ hadoop fs -put project_data/Case.csv /assignment_data 
+ hadoop fs -put project_data/Region.csv /assignment_data
+ hadoop fs -put project_data/TimeProvince.csv /assignment_data  
+ 
+a. Read the data, show it and Count the number of records
+
+READ CASE.CSV
+
+>>>casedf = spark.read.option("Header",True).option("inferSchema",True).csv("/assignment_data/Case.csv")
+
+SHOW CASE.CSV
+
+>>> casedf.show(2)
++--------+--------+----------+-----+--------------+---------+---------+----------+
+| case_id|province|      city|group|infection_case|confirmed| latitude| longitude|
++--------+--------+----------+-----+--------------+---------+---------+----------+
+| 1000001|   Seoul|Yongsan-gu| true| Itaewon Clubs|      139|37.538621|126.992652|
+| 1000002|   Seoul| Gwanak-gu| true|       Richway|      119| 37.48208|126.901384|
++--------+--------+----------+-----+--------------+---------+---------+----------+
+only showing top 2 rows
+
+COUNT CASE.CSV
