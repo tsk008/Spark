@@ -87,6 +87,53 @@ COUNT TIMEPROVINCE.CSV
 |               2771|
 +-------------------+
 
+b. Describe the data with a describe function.
+
+CASE.CSV
+
+>>> casedf.printSchema()
+root
+ |--  case_id: integer (nullable = true)
+ |-- province: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- group: boolean (nullable = true)
+ |-- infection_case: string (nullable = true)
+ |-- confirmed: integer (nullable = true)
+ |-- latitude: string (nullable = true)
+ |-- longitude: string (nullable = true)
+ 
+REGION.CSV
+
+>>> regiondf.printSchema()
+root
+ |-- code: integer (nullable = true)
+ |-- province: string (nullable = true)
+ |-- city: string (nullable = true)
+ |-- latitude: double (nullable = true)
+ |-- longitude: double (nullable = true)
+ |-- elementary_school_count: integer (nullable = true)
+ |-- kindergarten_count: integer (nullable = true)
+ |-- university_count: integer (nullable = true)
+ |-- academy_ratio: double (nullable = true)
+ |-- elderly_population_ratio: double (nullable = true)
+ |-- elderly_alone_ratio: double (nullable = true)
+ |-- nursing_home_count: integer (nullable = true)
+ 
+TIME PROVINCE.CSV
+
+>>> timeprovincedf.printSchema()
+root
+ |-- date: string (nullable = true)
+ |-- time: integer (nullable = true)
+ |-- province: string (nullable = true)
+ |-- confirmed: integer (nullable = true)
+ |-- released: integer (nullable = true)
+ |-- deceased: integer (nullable = true)
+ 
+ 
+
+
+
 
 
 
