@@ -317,3 +317,45 @@ TIME PROVINCE.CSV
 +----------+----+----------------+---------+--------+--------+
 only showing top 10 rows
 
+
+g. If there is any null value, fill it with any random value or drop it.
+
+
+
+h. Filter the data based on different columns or variables and do the best analysis.
+
+For example, we may want to find out all the different infection_case in Daegu Province with more than 10 confirmed cases.
+
+>>> casedf.filter((col("province") == "Daegu") & (col("confirmed") >= 10).).show()
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+| case_id|province|        city|group|      infection_case|confirmed| latitude| longitude|
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+| 1200001|   Daegu|      Nam-gu| true|  Shincheonji Church|     4511| 35.84008|  128.5667|
+| 1200002|   Daegu|Dalseong-gun| true|Second Mi-Ju Hosp...|      196|35.857375|128.466651|
+| 1200003|   Daegu|      Seo-gu| true|Hansarang Convale...|      124|35.885592|128.556649|
+| 1200004|   Daegu|Dalseong-gun| true|Daesil Convalesce...|      101|35.857393|128.466653|
+| 1200005|   Daegu|     Dong-gu| true|     Fatima Hospital|       39| 35.88395|128.624059|
+| 1200008|   Daegu|           -|false|     overseas inflow|       41|        -|         -|
+| 1200009|   Daegu|           -|false|contact with patient|      917|        -|         -|
+| 1200010|   Daegu|           -|false|                 etc|      747|        -|         -|
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+
+
+
+i. Sort the number of confirmed cases. Confirmed column is there in the dataset. Check with descending sort also.
+
+>>> casedf.filter((col("province") == "Daegu") &( col("confirmed") >= 10)).orderBy(col("confirmed").asc()).show()
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+| case_id|province|        city|group|      infection_case|confirmed| latitude| longitude|
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+| 1200005|   Daegu|     Dong-gu| true|     Fatima Hospital|       39| 35.88395|128.624059|
+| 1200008|   Daegu|           -|false|     overseas inflow|       41|        -|         -|
+| 1200004|   Daegu|Dalseong-gun| true|Daesil Convalesce...|      101|35.857393|128.466653|
+| 1200003|   Daegu|      Seo-gu| true|Hansarang Convale...|      124|35.885592|128.556649|
+| 1200002|   Daegu|Dalseong-gun| true|Second Mi-Ju Hosp...|      196|35.857375|128.466651|
+| 1200010|   Daegu|           -|false|                 etc|      747|        -|         -|
+| 1200009|   Daegu|           -|false|contact with patient|      917|        -|         -|
+| 1200001|   Daegu|      Nam-gu| true|  Shincheonji Church|     4511| 35.84008|  128.5667|
++--------+--------+------------+-----+--------------------+---------+---------+----------+
+
+
