@@ -478,8 +478,65 @@ l. For joins we will need one more file,you can use region file.Use different di
 +--------+--------+---------------+-----+--------------------+---------+---------+----------+-----+--------+-----+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
 | 1000038|   Seoul|              -|false|                 etc|      100|        -|         -|10000|   Seoul|Seoul|37.566953|126.977977|                    607|               830|              48|         1.44|                   15.38|                5.8|             22739|
 
+5. If you want, you can also use SQL with data frames. Let us try to run some SQL on the cases table.
 
+Enabling the dataframe to write SQL queries -> casedf.createOrReplaceTempView("Case")
 
+GROUP BY CLAUSE
+
+>>> spark.sql("select province,sum(confirmed) as Total_confirmed_case from case group by province").show()
++-----------------+--------------------+
+|         province|Total_confirmed_case|
++-----------------+--------------------+
+|           Sejong|                  49|
+|            Ulsan|                  51|
+|Chungcheongbuk-do|                  60|
+|       Gangwon-do|                  62|
+|          Gwangju|                  43|
+| Gyeongsangbuk-do|                1324|
+|            Daegu|                6680|
+| Gyeongsangnam-do|                 132|
+|          Incheon|                 202|
+|          Jeju-do|                  19|
+|      Gyeonggi-do|                1000|
+|            Busan|                 156|
+|          Daejeon|                 131|
+|            Seoul|                1280|
+|Chungcheongnam-do|                 158|
+|     Jeollabuk-do|                  23|
+|     Jeollanam-do|                  25|
++-----------------+--------------------+
+
+ORDER BY CLAUSE
+
+>>> spark.sql("select province,sum(confirmed) as Total_confirmed_case from case group by province order by Total_confirmed_case").show()
++-----------------+--------------------+
+|         province|Total_confirmed_case|
++-----------------+--------------------+
+|          Jeju-do|                  19|
+|     Jeollabuk-do|                  23|
+|     Jeollanam-do|                  25|
+|          Gwangju|                  43|
+|           Sejong|                  49|
+|            Ulsan|                  51|
+|Chungcheongbuk-do|                  60|
+|       Gangwon-do|                  62|
+|          Daejeon|                 131|
+| Gyeongsangnam-do|                 132|
+|            Busan|                 156|
+|Chungcheongnam-do|                 158|
+|          Incheon|                 202|
+|      Gyeonggi-do|                1000|
+|            Seoul|                1280|
+| Gyeongsangbuk-do|                1324|
+|            Daegu|                6680|
++-----------------+--------------------+
+
+HAVING CLAUSE
+
+6. Create Spark UDFs 
+Create function casehighlow()
+If case is less than 50 return low else return high,convert into a UDF Function and mention the return type offunction.
 
 
 
