@@ -378,7 +378,107 @@ j. In case of any wrong data type, cast that data type from nteger to string or 
 
 
 
-k. Use group by on top of province and city column and agg it ith sum of confirmed cases.
+k. Use group by on top of province and city column and agg it with sum of confirmed cases.
+
+CASE.CSV
+
+>>> casedf.groupBy("province","city").sum("confirmed").show(100)
++-----------------+---------------+--------------+
+|         province|           city|sum(confirmed)|
++-----------------+---------------+--------------+
+| Gyeongsangnam-do|       Jinju-si|             9|
+|            Seoul|        Guro-gu|           139|
+|            Seoul|     Gangnam-gu|            18|
+|          Daejeon|              -|           100|
+|     Jeollabuk-do|from other city|             6|
+| Gyeongsangnam-do|Changnyeong-gun|             7|
+|            Seoul|              -|           561|
+|          Jeju-do|from other city|             1|
+| Gyeongsangbuk-do|              -|           345|
+| Gyeongsangnam-do|   Geochang-gun|            18|
+| Gyeongsangbuk-do|        Gumi-si|            10|
+|          Incheon|from other city|           117|
+|            Busan|              -|            85|
+|            Daegu|         Seo-gu|           124|
+|            Busan|     Suyeong-gu|             5|
+|      Gyeonggi-do|   Uijeongbu-si|            50|
+|            Seoul|     Yongsan-gu|           139|
+|            Daegu|              -|          1705|
+|            Seoul|   Seodaemun-gu|             5|
+|      Gyeonggi-do|    Seongnam-si|            94|
+|      Gyeonggi-do|     Bucheon-si|            67|
+| Gyeongsangnam-do|from other city|            36|
+|      Gyeonggi-do|       Suwon-si|            25|
+|          Daejeon|from other city|             4|
+|Chungcheongbuk-do|from other city|            17|
+|            Seoul|from other city|            82|
+| Gyeongsangbuk-do|    Bonghwa-gun|            68|
+|Chungcheongnam-do|     Cheonan-si|           103|
+|     Jeollabuk-do|              -|            17|
+|            Seoul|      Jongno-gu|            17|
+|          Incheon|              -|            85|
+|      Gyeonggi-do|from other city|           248|
+|           Sejong|         Sejong|            39|
+|            Seoul|      Dobong-gu|            43|
+|          Gwangju|from other city|             9|
+|           Sejong|              -|             9|
+|          Gwangju|        Dong-gu|             5|
+|Chungcheongnam-do|              -|            30|
+|            Seoul|  Dongdaemun-gu|            17|
+|            Daegu|   Dalseong-gun|           297|
+|Chungcheongbuk-do|     Goesan-gun|            11|
+|            Seoul|   Yangcheon-gu|            46|
+|            Seoul|      Gwanak-gu|           149|
+|       Gangwon-do|       Wonju-si|             4|
+|            Busan|from other city|            17|
+|            Ulsan|              -|            35|
+|     Jeollanam-do|from other city|             1|
+|Chungcheongnam-do|      Seosan-si|             9|
+|          Gwangju|              -|            29|
+|       Gangwon-do|from other city|            35|
+| Gyeongsangbuk-do|    Chilgok-gun|            36|
+|            Busan|    Haeundae-gu|             6|
+|           Sejong|from other city|             1|
+|     Jeollanam-do|              -|            22|
+| Gyeongsangnam-do|              -|            52|
+| Gyeongsangbuk-do|   Cheongdo-gun|           119|
+|            Daegu|         Nam-gu|          4511|
+|          Daejeon|         Seo-gu|            27|
+|            Busan|     Dongnae-gu|            39|
+| Gyeongsangbuk-do|from other city|           607|
+|            Daegu|        Dong-gu|            39|
+| Gyeongsangnam-do|    Changwon-si|             7|
+| Gyeongsangnam-do|     Yangsan-si|             3|
+|Chungcheongbuk-do|              -|            32|
+|            Busan|         Jin-gu|             4|
+|      Gyeonggi-do|      Anyang-si|            39|
+|       Gangwon-do|              -|            23|
+|            Seoul|      Seocho-gu|             5|
+|            Seoul|   Seongdong-gu|            13|
+|            Seoul|        Jung-gu|            23|
+|      Gyeonggi-do|              -|           477|
+|            Ulsan|from other city|            16|
+| Gyeongsangbuk-do|     Yechun-gun|            40|
+|            Seoul|     Gangseo-gu|             0|
+|Chungcheongnam-do|from other city|            16|
+|          Jeju-do|              -|            18|
+|            Daegu|from other city|             4|
+|     Jeollanam-do|       Muan-gun|             2|
+|            Seoul|   Eunpyeong-gu|            14|
+|            Seoul|Yeongdeungpo-gu|             3|
+|            Seoul|   Geumcheon-gu|             6|
+| Gyeongsangbuk-do|   Gyeongsan-si|            99|
++-----------------+---------------+--------------+
+
+
+
+
+
+
+
+
+
+
 
 
 
