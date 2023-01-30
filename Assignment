@@ -130,6 +130,95 @@ root
  |-- released: integer (nullable = true)
  |-- deceased: integer (nullable = true)
  
+c. If there is any duplicate value drop it.
+
+CASE.CSV
+
+>>> casedf.dropDuplicates().show()
++--------+-----------------+---------------+-----+--------------------+---------+----------+-----------+
+| case_id|         province|           city|group|      infection_case|confirmed|  latitude|  longitude|
++--------+-----------------+---------------+-----+--------------------+---------+----------+-----------+
+| 1500007|          Daejeon|from other city| true|Seosan-si Laboratory|        2|         -|          -|
+| 1500004|          Daejeon|         Seo-gu| true|     Dreaming Church|        4| 36.346869| 127.368594|
+| 3000002|       Gangwon-do|from other city| true|Uijeongbu St. Mar...|       10|         -|          -|
+| 1000023|            Seoul|        Jung-gu| true|   KB Life Insurance|       13| 37.560899| 126.966998|
+| 1100007|            Busan|from other city| true|Cheongdo Daenam H...|        1|         -|          -|
+| 4100002|Chungcheongnam-do|from other city| true|Door-to-door sale...|       10|         -|          -|
+| 5000002|     Jeollabuk-do|from other city| true|Door-to-door sale...|        3|         -|          -|
+| 1000010|            Seoul|      Gwanak-gu| true|     Wangsung Church|       30| 37.481735| 126.930121|
+| 1000030|            Seoul|     Gangseo-gu| true|SJ Investment Cal...|        0| 37.559649| 126.835102|
+| 1200008|            Daegu|              -|false|     overseas inflow|       41|         -|          -|
+| 1300005|          Gwangju|              -|false|                 etc|        1|         -|          -|
+| 4100001|Chungcheongnam-do|     Cheonan-si| true|gym facility in C...|      103|  36.81503|   127.1139|
+| 3000008|       Gangwon-do|              -|false|                 etc|        7|         -|          -|
+| 1500002|          Daejeon|         Seo-gu| true|Dunsan Electronic...|       13|36.3400973|127.3927099|
+| 4100008|Chungcheongnam-do|              -|false|                 etc|       12|         -|          -|
+| 3000006|       Gangwon-do|              -|false|     overseas inflow|       16|         -|          -|
+| 2000005|      Gyeonggi-do|   Uijeongbu-si| true|Uijeongbu St. Mar...|       50| 37.758635| 127.077716|
+| 2000017|      Gyeonggi-do|from other city| true|     Wangsung Church|        6|         -|          -|
+| 1000004|            Seoul|   Yangcheon-gu| true|Yangcheon Table T...|       43| 37.546061| 126.874209|
+| 1100008|            Busan|              -|false|     overseas inflow|       36|         -|          -|
++--------+-----------------+---------------+-----+--------------------+---------+----------+-----------+
+only showing top 20 rows
+
+REGION.CSV
+
+>>> regiondf.dropDuplicates().show()
++-----+-----------------+--------------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+| code|         province|          city| latitude| longitude|elementary_school_count|kindergarten_count|university_count|academy_ratio|elderly_population_ratio|elderly_alone_ratio|nursing_home_count|
++-----+-----------------+--------------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+|20190|      Gyeonggi-do|Yangpyeong-gun|37.491744| 127.48757|                     22|                25|               1|         0.78|                   24.66|               11.1|               178|
+|11110|            Busan|        Seo-gu|35.098135|129.024193|                     11|                 9|               0|         1.02|                   24.36|               12.3|               235|
+|11150|            Busan|       Jung-gu|35.106321|129.032256|                      4|                 4|               0|         1.36|                    26.0|               13.0|               182|
+|30030|       Gangwon-do|    Donghae-si|37.524689|129.114239|                     14|                17|               0|          1.6|                   19.41|               10.1|               140|
+|14010|          Incheon|   Ganghwa-gun|37.747065|126.487777|                     20|                19|               1|         0.68|                   31.97|               13.9|               107|
+|20210|      Gyeonggi-do| Yeoncheon-gun|38.096409|127.075067|                     13|                13|               0|         0.82|                   25.41|               12.7|                69|
+|51110|     Jeollanam-do|   Suncheon-si|34.950592|127.487396|                     42|                61|               3|         1.94|                    15.2|                8.3|               452|
+|50140|     Jeollabuk-do|     Jinan-gun|35.791669|127.424806|                     13|                12|               0|         0.39|                    33.8|               19.5|                54|
+|60180| Gyeongsangbuk-do|     Uljin-gun|36.993078|129.400585|                     13|                16|               0|         1.01|                    27.3|               17.6|                83|
+|12070|            Daegu|    Suseong-gu|35.858395|128.630551|                     34|                49|               1|         2.28|                    15.0|                6.9|               948|
+|10190|            Seoul|  Yangcheon-gu|37.517189|126.866618|                     30|                43|               0|         2.26|                   13.55|                5.5|               816|
+|50030|     Jeollabuk-do|      Gimje-si|35.803506|126.880507|                     36|                40|               0|         1.11|                   30.89|               17.9|               188|
+|30010|       Gangwon-do|  Gangneung-si| 37.75197|128.875928|                     34|                36|               4|          1.9|                   20.46|                9.6|               347|
+|41040|Chungcheongnam-do|     Nonsan-si|36.187076|127.098959|                     33|                32|               2|         1.03|                   25.54|               13.4|               262|
+|60170| Gyeongsangbuk-do|   Ulleung-gun|37.484438|130.905883|                      4|                 6|               0|         0.21|                   24.81|               10.7|                11|
+|80000|            Korea|         Korea|37.566953|126.977977|                   6087|              8837|             340|         1.56|                   15.67|                7.2|             94865|
+|13030|          Gwangju|       Dong-gu| 35.14626|126.923133|                     11|                18|               3|         2.88|                   21.59|                8.8|               327|
+|51200|     Jeollanam-do| Hampyeong-gun|35.065927|126.516688|                     11|                12|               0|         0.49|                   35.45|               22.0|                76|
+|11000|            Busan|         Busan|35.179884|129.074796|                    304|               408|              22|          1.4|                   18.41|                8.6|              6752|
+|13020|          Gwangju|        Nam-gu|35.132982|126.902379|                     23|                44|               4|         2.63|                   16.76|                7.5|               427|
++-----+-----------------+--------------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+only showing top 20 rows
+
+TIME PROVINCE.CSV
+
+>>> timeprovincedf.dropDuplicates().show()
++----------+----+-----------------+---------+--------+--------+
+|      date|time|         province|confirmed|released|deceased|
++----------+----+-----------------+---------+--------+--------+
+|2020-02-04|  16|      Gyeonggi-do|        8|       0|       0|
+|2020-02-15|  16|     Jeollanam-do|        0|       0|       0|
+|2020-02-16|  16|            Seoul|       14|       3|       0|
+|2020-02-19|  16|Chungcheongbuk-do|        0|       0|       0|
+|2020-03-25|   0|Chungcheongbuk-do|       38|      13|       0|
+|2020-03-29|   0|            Seoul|      410|      93|       0|
+|2020-04-09|   0|           Sejong|       46|      16|       0|
+|2020-04-23|   0|            Ulsan|       43|      36|       1|
+|2020-04-26|   0| Gyeongsangbuk-do|     1364|    1109|      52|
+|2020-05-08|   0| Gyeongsangnam-do|      117|     105|       0|
+|2020-05-15|   0|     Jeollabuk-do|       20|      14|       0|
+|2020-05-23|   0|            Seoul|      762|     604|       4|
+|2020-06-21|   0|          Daejeon|       82|      44|       1|
+|2020-02-04|  16| Gyeongsangnam-do|        0|       0|       0|
+|2020-02-28|  16|          Gwangju|        9|       2|       0|
+|2020-03-13|   0|      Gyeonggi-do|      185|      31|       2|
+|2020-04-02|   0|           Sejong|       46|      12|       0|
+|2020-04-18|   0|            Daegu|     6830|    5685|     160|
+|2020-04-30|   0|Chungcheongnam-do|      143|     127|       0|
+|2020-05-05|   0|       Gangwon-do|       53|      42|       2|
++----------+----+-----------------+---------+--------+--------+
+only showing top 20 rows
+ 
  
 
 
