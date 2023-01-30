@@ -256,7 +256,64 @@ TIMEPROVINCE.CSV
 |2020-01-20|  16|   Seoul|        0|       0|       0|
 +----------+----+--------+---------+--------+--------+
 
+e. If you find the column name is not suitable, change the column name.[optional]
 
+f. Select the subset of the columns.
 
+CASE.CSV
 
+>>> casedf.filter(col("province") == "Seoul").show()
++--------+--------+---------------+-----+--------------------+---------+---------+----------+
+| case_id|province|           city|group|      infection_case|confirmed| latitude| longitude|
++--------+--------+---------------+-----+--------------------+---------+---------+----------+
+| 1000001|   Seoul|     Yongsan-gu| true|       Itaewon Clubs|      139|37.538621|126.992652|
+| 1000002|   Seoul|      Gwanak-gu| true|             Richway|      119| 37.48208|126.901384|
+| 1000003|   Seoul|        Guro-gu| true| Guro-gu Call Center|       95|37.508163|126.884387|
+| 1000004|   Seoul|   Yangcheon-gu| true|Yangcheon Table T...|       43|37.546061|126.874209|
+| 1000005|   Seoul|      Dobong-gu| true|     Day Care Center|       43|37.679422|127.044374|
+| 1000006|   Seoul|        Guro-gu| true|Manmin Central Ch...|       41|37.481059|126.894343|
+| 1000007|   Seoul|from other city| true|SMR Newly Planted...|       36|        -|         -|
+| 1000008|   Seoul|  Dongdaemun-gu| true|       Dongan Church|       17|37.592888|127.056766|
+| 1000009|   Seoul|from other city| true|Coupang Logistics...|       25|        -|         -|
+| 1000010|   Seoul|      Gwanak-gu| true|     Wangsung Church|       30|37.481735|126.930121|
+| 1000011|   Seoul|   Eunpyeong-gu| true|Eunpyeong St. Mar...|       14| 37.63369|  126.9165|
+| 1000012|   Seoul|   Seongdong-gu| true|    Seongdong-gu APT|       13| 37.55713|  127.0403|
+| 1000013|   Seoul|      Jongno-gu| true|Jongno Community ...|       10| 37.57681|   127.006|
+| 1000014|   Seoul|     Gangnam-gu| true|Samsung Medical C...|        7| 37.48825| 127.08559|
+| 1000015|   Seoul|        Jung-gu| true|Jung-gu Fashion C...|        7|37.562405|126.984377|
+| 1000016|   Seoul|   Seodaemun-gu| true|  Yeonana News Class|        5|37.558147|126.943799|
+| 1000017|   Seoul|      Jongno-gu| true|Korea Campus Crus...|        7|37.594782|126.968022|
+| 1000018|   Seoul|     Gangnam-gu| true|Gangnam Yeoksam-d...|        6|        -|         -|
+| 1000019|   Seoul|from other city| true|Daejeon door-to-d...|        1|        -|         -|
+| 1000020|   Seoul|   Geumcheon-gu| true|Geumcheon-gu rice...|        6|        -|         -|
++--------+--------+---------------+-----+--------------------+---------+---------+----------+
+only showing top 20 rows
+
+REGION.CSV
+
+>>> regiondf.filter(col("city") == "Gangnam-gu").show(100)
++-----+--------+----------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+| code|province|      city| latitude| longitude|elementary_school_count|kindergarten_count|university_count|academy_ratio|elderly_population_ratio|elderly_alone_ratio|nursing_home_count|
++-----+--------+----------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+|10010|   Seoul|Gangnam-gu|37.518421|127.047222|                     33|                38|               0|         4.18|                   13.17|                4.3|              3088|
++-----+--------+----------+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+
+TIME PROVINCE.CSV
+
+>>> timeprovincedf.filter(col("confirmed") >= 100).show(10)
++----------+----+----------------+---------+--------+--------+
+|      date|time|        province|confirmed|released|deceased|
++----------+----+----------------+---------+--------+--------+
+|2020-02-21|  16|           Daegu|      110|       0|       0|
+|2020-02-22|  16|           Daegu|      193|       0|       0|
+|2020-02-22|  16|Gyeongsangbuk-do|      145|       1|       3|
+|2020-02-23|  16|           Daegu|      310|       0|       1|
+|2020-02-23|  16|Gyeongsangbuk-do|      170|       1|       3|
+|2020-02-24|  16|           Daegu|      483|       0|       2|
+|2020-02-24|  16|Gyeongsangbuk-do|      193|       1|       6|
+|2020-02-25|  16|           Daegu|      543|       0|       6|
+|2020-02-25|  16|Gyeongsangbuk-do|      249|       1|       6|
+|2020-02-26|  16|           Daegu|      710|       1|       6|
++----------+----+----------------+---------+--------+--------+
+only showing top 10 rows
 
